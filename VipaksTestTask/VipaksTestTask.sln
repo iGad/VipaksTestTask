@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VipaksTestTask", "VipaksTestTask\VipaksTestTask.csproj", "{F259BF70-13D4-4EDC-8758-174639FA44BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VipaksTestTask.UnitTests", "VipaksTestTask.UnitTests\VipaksTestTask.UnitTests.csproj", "{DD27A9FA-5A1D-4C89-9F7B-BE3F1C268D1F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F259BF70-13D4-4EDC-8758-174639FA44BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F259BF70-13D4-4EDC-8758-174639FA44BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F259BF70-13D4-4EDC-8758-174639FA44BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F259BF70-13D4-4EDC-8758-174639FA44BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD27A9FA-5A1D-4C89-9F7B-BE3F1C268D1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD27A9FA-5A1D-4C89-9F7B-BE3F1C268D1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD27A9FA-5A1D-4C89-9F7B-BE3F1C268D1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD27A9FA-5A1D-4C89-9F7B-BE3F1C268D1F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
