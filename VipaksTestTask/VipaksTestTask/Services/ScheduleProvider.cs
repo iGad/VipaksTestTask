@@ -1,8 +1,7 @@
 ﻿using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
+using VipaksTestTask.Interfaces;
+using VipaksTestTask.Models;
 
 namespace VipaksTestTask.Services
 {

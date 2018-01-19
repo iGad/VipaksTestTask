@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
+using VipaksTestTask.Interfaces;
 
 namespace VipaksTestTask.Services
 {
+    /// <summary>
+    /// Простая оболочка таймера
+    /// </summary>
     public class TimerWrapper : ITimerWrapper
     {
         private readonly Timer _timer = new Timer();

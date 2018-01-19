@@ -1,4 +1,5 @@
 ﻿using System;
+using VipaksTestTask.Models;
 using VipaksTestTask.Services;
 
 namespace VipaksTestTask.ViewModels

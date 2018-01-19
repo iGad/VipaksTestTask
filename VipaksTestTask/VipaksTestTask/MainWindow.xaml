@@ -4,9 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:VipaksTestTask.ViewModels"
+        xmlns:toolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
         xmlns:local="clr-namespace:VipaksTestTask"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="700">
+        Title="MainWindow" Height="500" Width="900">
     <Window.Resources>
         <DataTemplate DataType="{x:Type  viewModels:ScoreboardViewModel}">
             <Border BorderBrush="Black" BorderThickness="1">
@@ -46,7 +47,12 @@
                 </Grid>
             </Border>
         </DataTemplate>
-        
+        <DataTemplate DataType="{x:Type viewModels:DiagramViewModel}">
+            <toolkit:Chart>
+                <toolkit:ColumnSeries Title="Прибыло"  ItemsSource="{Binding Path=(viewModels:DiagramViewModel.Columns)}" DependentValueBinding="{Binding Path=(viewModels:HourColumn.ArrivedCount)}" IndependentValueBinding="{Binding Path=(viewModels:HourColumn.From)}" />
+                <toolkit:ColumnSeries Title="Убыло"  ItemsSource="{Binding Path=(viewModels:DiagramViewModel.Columns)}" DependentValueBinding="{Binding Path=(viewModels:HourColumn.DeparturedCount)}" IndependentValueBinding="{Binding Path=(viewModels:HourColumn.From)}"/>
+            </toolkit:Chart>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -83,5 +89,10 @@
             </Grid>
 
         </Grid>
+       <!--<ContentPresenter Grid.Row="1" Content="{Binding Path=(viewModels:MainViewModel.DiagramViewModel)}"></ContentPresenter>-->
+        <toolkit:Chart Grid.Row="1" DataContext="{Binding Path=(viewModels:MainViewModel.DiagramViewModel)}">
+            <toolkit:ColumnSeries Title="Прибыло"  ItemsSource="{Binding Path=(viewModels:DiagramViewModel.Columns)}" DependentValueBinding="{Binding Path=(viewModels:HourColumn.ArrivedCount)}" IndependentValueBinding="{Binding Path=(viewModels:HourColumn.From)}" />
+            <toolkit:ColumnSeries Title="Убыло"  ItemsSource="{Binding Path=(viewModels:DiagramViewModel.Columns)}" DependentValueBinding="{Binding Path=(viewModels:HourColumn.DeparturedCount)}" IndependentValueBinding="{Binding Path=(viewModels:HourColumn.From)}"/>
+        </toolkit:Chart>
     </Grid>
 </Window>

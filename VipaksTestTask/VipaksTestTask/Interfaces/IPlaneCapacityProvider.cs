@@ -1,4 +1,7 @@
-﻿namespace VipaksTestTask.Services
+﻿using VipaksTestTask.Models;
+using VipaksTestTask.Services;
+
+namespace VipaksTestTask.Interfaces
 {
     public interface IPlaneCapacityProvider
     {

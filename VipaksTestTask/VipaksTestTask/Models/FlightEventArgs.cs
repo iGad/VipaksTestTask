@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VipaksTestTask.Services
+namespace VipaksTestTask.Models
 {
     public class FlightEventArgs : EventArgs
     {

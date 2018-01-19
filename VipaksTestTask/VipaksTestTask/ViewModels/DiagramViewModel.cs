@@ -1,37 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using VipaksTestTask.Models;
 using VipaksTestTask.Services;
 
 namespace VipaksTestTask.ViewModels
 {
-    public class HourColumn : ViewModel
-    {
-        private int _arrivedCount;
-        private int _departuredCount;
-        public TimeSpan From { get; set; }
-        public TimeSpan To { get; set; }
-
-        public int ArrivedCount
-        {
-            get { return _arrivedCount; }
-            set
-            {
-                _arrivedCount = value;
-                RaisePropertyChanged(nameof(ArrivedCount));
-            }
-        }
-
-        public int DeparturedCount
-        {
-            get { return _departuredCount; }
-            set
-            {
-                _departuredCount = value;
-                RaisePropertyChanged(nameof(DeparturedCount));
-            }
-        }
-    }
     public class DiagramViewModel : ViewModel
     {
         private readonly AirportEngine _engine;
@@ -89,7 +63,7 @@ namespace VipaksTestTask.ViewModels
 
         private HourColumn FindColumn(TimeSpan time)
         {
-            return Columns.Single(x => x.From >= time && x.To < time);
+            return Columns.Single(x =>  time >= x.From && time < x.To);
         }
     }
 }

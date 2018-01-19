@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Threading;
 using Ninject;
-using Ninject.Components;
-using Ninject.Modules;
+using VipaksTestTask.Interfaces;
 using VipaksTestTask.Services;
 using VipaksTestTask.ViewModels;
 
@@ -33,6 +26,7 @@ namespace VipaksTestTask
         
         private void OnStartup(object sender, StartupEventArgs e)
         {
+            //Точка компоновки
             var kernel = new StandardKernel();
             kernel.Bind<ITimerWrapper>().To<TimerWrapper>();
             kernel.Bind<ITimeManager>().To<TimeManager>().InSingletonScope();
@@ -41,6 +35,7 @@ namespace VipaksTestTask
             kernel.Bind<AirportEngine>().ToSelf().InSingletonScope();
             kernel.Bind<ArrivalScoreboardViewModel>().ToSelf();
             kernel.Bind<DepartureScoreboardViewModel>().ToSelf();
+            kernel.Bind<DiagramViewModel>().ToSelf();
             kernel.Bind<MainViewModel>().ToSelf();
             var mainWindow = new MainWindow{DataContext = kernel.Get<MainViewModel>()};
             mainWindow.Show();

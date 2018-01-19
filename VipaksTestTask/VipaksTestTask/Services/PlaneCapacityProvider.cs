@@ -1,7 +1,12 @@
 ﻿using System.Collections.Generic;
+using VipaksTestTask.Interfaces;
+using VipaksTestTask.Models;
 
 namespace VipaksTestTask.Services
 {
+    /// <summary>
+    /// Поставщик вместимости самолетов
+    /// </summary>
     public class PlaneCapacityProvider : IPlaneCapacityProvider
     {
         private readonly Dictionary<PlaneType, int> _capacityDictionary = new Dictionary<PlaneType, int>

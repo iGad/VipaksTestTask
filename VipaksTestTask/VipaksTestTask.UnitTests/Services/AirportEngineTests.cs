@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using NUnit.Framework;
+using VipaksTestTask.Interfaces;
 using VipaksTestTask.Services;
 using VipaksTestTask.UnitTests.Fakes;
 

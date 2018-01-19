@@ -1,11 +1,11 @@
 ﻿using System;
+using VipaksTestTask.Interfaces;
 
 namespace VipaksTestTask.Services
 {
-    public class TickEventArgs : EventArgs
-    {
-        public TimeSpan Time { get; set; }
-    }
+    /// <summary>
+    /// Сервис управления временем выполнения
+    /// </summary>
     public class TimeManager : ITimeManager
     {
         public const int DefaultTimerInterval = 500;
@@ -19,14 +19,10 @@ namespace VipaksTestTask.Services
             _timer.Interval = DefaultTimerInterval;
         }
 
-        private void OnTimerElapsed()
-        {
-            _time += TimeSpan.FromMilliseconds(_timer.Interval * Multiplyer);
-            if (_time.Days > 0)
-                _time = _time - new TimeSpan(_time.Days, 0, 0, 0);
-            OnTick(new TickEventArgs {Time = _time});
-        }
-
+        
+        /// <summary>
+        /// Множитель к реальному времени
+        /// </summary>
         public int Multiplyer
         {
             get { return _multiplyer; }
@@ -37,7 +33,9 @@ namespace VipaksTestTask.Services
                 _multiplyer = value;
             }
         }
-
+        /// <summary>
+        /// Событие об изменении времени
+        /// </summary>
         public event EventHandler<TickEventArgs> Tick;
 
         protected virtual void OnTick(TickEventArgs e)
@@ -53,6 +51,14 @@ namespace VipaksTestTask.Services
         public void Stop()
         {
             _timer.Stop();
+        }
+
+        private void OnTimerElapsed()
+        {
+            _time += TimeSpan.FromMilliseconds(_timer.Interval * Multiplyer);
+            if (_time.Days > 0)
+                _time = _time - new TimeSpan(_time.Days, 0, 0, 0);
+            OnTick(new TickEventArgs { Time = _time });
         }
     }
 }

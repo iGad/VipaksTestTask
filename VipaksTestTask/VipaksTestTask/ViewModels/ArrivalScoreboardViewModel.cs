@@ -7,7 +7,7 @@ namespace VipaksTestTask.ViewModels
         public ArrivalScoreboardViewModel(AirportEngine engine) : base(engine)
         {
             engine.PlaneArrived += OnFlightHappend;
-            Name = "Прилёт";
+            Name = Resources.ArrivalCaption;
         }
     }
 }

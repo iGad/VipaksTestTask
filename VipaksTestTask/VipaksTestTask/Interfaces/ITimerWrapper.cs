@@ -1,7 +1,10 @@
 ﻿using System;
 
-namespace VipaksTestTask.Services
+namespace VipaksTestTask.Interfaces
 {
+    /// <summary>
+    /// Интерфейс для таймера
+    /// </summary>
     public interface ITimerWrapper
     {
         int Interval { get; set; }

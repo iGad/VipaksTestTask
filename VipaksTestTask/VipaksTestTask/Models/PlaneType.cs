@@ -1,5 +1,8 @@
-﻿namespace VipaksTestTask.Services
+﻿namespace VipaksTestTask.Models
 {
+    /// <summary>
+    /// Типы самолета
+    /// </summary>
     public enum PlaneType
     {
         A380 = 0,

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using VipaksTestTask.Interfaces;
+using VipaksTestTask.Models;
 using VipaksTestTask.Services;
 
 namespace VipaksTestTask.UnitTests.Fakes
@@ -27,7 +29,7 @@ namespace VipaksTestTask.UnitTests.Fakes
                     {
                         Time = new TimeSpan(i, j * 60 / FlightPerHour, 0),
                         PlaneType = (PlaneType) (i % planeTypeCount),
-                        EventType = (EventType) (i % 2),
+                        FlightType = (FlightType) (i % 2),
                         City = "test" + i
                     });
                     i++;

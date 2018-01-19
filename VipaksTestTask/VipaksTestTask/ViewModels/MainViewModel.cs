@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using VipaksTestTask.Interfaces;
+using VipaksTestTask.Models;
 using VipaksTestTask.Services;
 
 namespace VipaksTestTask.ViewModels
@@ -13,7 +12,7 @@ namespace VipaksTestTask.ViewModels
         private readonly AirportEngine _engine;
         private string _lastFlightInfo;
 
-        public MainViewModel(ITimeManager timeManager, AirportEngine engine, ArrivalScoreboardViewModel arrivalScoreboard, DepartureScoreboardViewModel departureScoreboard)
+        public MainViewModel(ITimeManager timeManager, AirportEngine engine, ArrivalScoreboardViewModel arrivalScoreboard, DepartureScoreboardViewModel departureScoreboard, DiagramViewModel diagramViewModel)
         {
             _timeManager = timeManager;
             _engine = engine;
@@ -21,6 +20,22 @@ namespace VipaksTestTask.ViewModels
             _engine.PlaneDepartured += OnFlightHappend;
             ArrivalScoreboard = arrivalScoreboard;
             DepartureScoreboard = departureScoreboard;
+            DiagramViewModel = diagramViewModel;
+            Columns = new Dictionary<string, int>
+            {
+                {"1", 10},
+                {"2", 10},
+                {"3", 10},
+                {"4", 10},
+                {"5", 10},
+                {"6", 10},
+                {"7", 10},
+                {"8", 10},
+                {"9", 10},
+                {"10", 10},
+                {"11", 10},
+                {"12", 10},
+            };
             PossibleMultiplyers = new ObservableCollection<int>
             {
                 1,
@@ -34,7 +49,7 @@ namespace VipaksTestTask.ViewModels
 
         private void OnFlightHappend(object sender, FlightEventArgs flightEventArgs)
         {
-            var pattern = flightEventArgs.FlightInfo.EventType == EventType.Arrival ? Resources.LastArrivedPattern : Resources.LastDeparturedPattern;
+            var pattern = flightEventArgs.FlightInfo.FlightType == FlightType.Arrival ? Resources.LastArrivedPattern : Resources.LastDeparturedPattern;
             LastFlightInfo = string.Format(pattern, flightEventArgs.FlightInfo.City, flightEventArgs.FlightInfo.PlaneType.ToString(), flightEventArgs.FlightInfo.Time, flightEventArgs.FlightInfo.PassengerCount);
         }
 
@@ -66,8 +81,9 @@ namespace VipaksTestTask.ViewModels
         }
 
         public ObservableCollection<int> PossibleMultiplyers { get; set; }
-
+        public Dictionary<string, int> Columns { get; set; }
         public ArrivalScoreboardViewModel ArrivalScoreboard { get; set; }
         public DepartureScoreboardViewModel DepartureScoreboard { get; set; }
+        public DiagramViewModel DiagramViewModel { get; set; }
     }
 }

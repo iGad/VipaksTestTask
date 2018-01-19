@@ -120,11 +120,17 @@
   <data name="ArrivalCaption" xml:space="preserve">
     <value>Количество пассажиров (Прилёт)</value>
   </data>
+  <data name="Arrived" xml:space="preserve">
+    <value>Прибыло</value>
+  </data>
   <data name="DayPassengersCount" xml:space="preserve">
     <value>за последние 24 часа</value>
   </data>
   <data name="DepartureCaption" xml:space="preserve">
     <value>Количество пассажиров (Вылет)</value>
+  </data>
+  <data name="Departured" xml:space="preserve">
+    <value>Убыло</value>
   </data>
   <data name="InLastFlight" xml:space="preserve">
     <value>в последнем рейсе</value>

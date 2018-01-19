@@ -7,7 +7,7 @@ namespace VipaksTestTask.ViewModels
         public DepartureScoreboardViewModel(AirportEngine engine) : base(engine)
         {
             engine.PlaneDepartured += OnFlightHappend;
-            Name = "Вылет";
+            Name = Resources.DepartureCaption;
         }
     }
 }

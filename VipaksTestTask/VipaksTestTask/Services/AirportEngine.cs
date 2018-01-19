@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Linq;
+using VipaksTestTask.Interfaces;
+using VipaksTestTask.Models;
 
 namespace VipaksTestTask.Services
 {
-    public class AirportEngine
+    /// <summary>
+    /// Основной сервис работы аэропорта
+    /// </summary>
+    public class AirportEngine : IDisposable
     {
         private readonly IScheduleProvider _scheduleProvider;
         private readonly ITimeManager _timeManager;
@@ -20,9 +25,54 @@ namespace VipaksTestTask.Services
             _planeCapacityProvider = planeCapacityProvider;
             _timeManager.Tick += OnTimeManagerTick;
         }
-
+        /// <summary>
+        /// Событие о прибывшем самолете
+        /// </summary>
         public event EventHandler<FlightEventArgs> PlaneArrived;
+        /// <summary>
+        /// Событие о вылетевшем самолете
+        /// </summary>
         public event EventHandler<FlightEventArgs> PlaneDepartured;
+        
+        /// <summary>
+        /// Запустить сервис
+        /// </summary>
+        public void Start()
+        {
+            _schedule = TryGetShedule();
+            _schedule.Validate();
+            _schedule.Flights = _schedule.Flights.OrderBy(x => x.Time).ToList();
+            _timeManager.Start();
+        }
+        /// <summary>
+        /// Остановить сервис
+        /// </summary>
+        public void Stop()
+        {
+            _timeManager.Stop();
+        }
+
+        protected virtual void OnPlaneArrived(FlightEventArgs e)
+        {
+            PlaneArrived?.Invoke(this, e);
+        }
+
+        protected virtual void OnPlaneDepartured(FlightEventArgs e)
+        {
+            PlaneDepartured?.Invoke(this, e);
+        }
+
+        private Schedule TryGetShedule()
+        {
+            try
+            {
+                return _scheduleProvider.GetSchedule();
+            }
+            catch (Exception)
+            {
+                throw new AppException("Не удалось загрузить расписание");
+            }
+        }
 
         private void OnTimeManagerTick(object sender, TickEventArgs tickEventArgs)
         {
@@ -43,9 +93,9 @@ namespace VipaksTestTask.Services
 
         private void FlightHappend(Flight flight)
         {
-            var flightInfo = new FlightInfo(flight) {PassengerCount = _random.Next(0, _planeCapacityProvider.GetPlaneCapacity(flight.PlaneType) + 1)};
-            var eventArgs = new FlightEventArgs {FlightInfo = flightInfo};
-            if(flight.EventType == EventType.Arrival)
+            var flightInfo = new FlightInfo(flight) { PassengerCount = _random.Next(0, _planeCapacityProvider.GetPlaneCapacity(flight.PlaneType) + 1) };
+            var eventArgs = new FlightEventArgs { FlightInfo = flightInfo };
+            if (flight.FlightType == FlightType.Arrival)
                 OnPlaneArrived(eventArgs);
             else
                 OnPlaneDepartured(eventArgs);
@@ -58,39 +108,9 @@ namespace VipaksTestTask.Services
             return currentIndex + 1;
         }
 
-        public void Start()
+        public void Dispose()
         {
-            _schedule = TryGetShedule();
-            _schedule.Validate();
-            _schedule.Flights = _schedule.Flights.OrderBy(x => x.Time).ToList();
-            _timeManager.Start();
-        }
-
-        private Schedule TryGetShedule()
-        {
-            try
-            {
-                return _scheduleProvider.GetSchedule();
-            }
-            catch (Exception)
-            {
-                throw new AppException("Не удалось загрузить расписание");
-            }
-        }
-
-        public void Stop()
-        {
-            _timeManager.Stop();
-        }
-
-        protected virtual void OnPlaneArrived(FlightEventArgs e)
-        {
-            PlaneArrived?.Invoke(this, e);
-        }
-
-        protected virtual void OnPlaneDepartured(FlightEventArgs e)
-        {
-            PlaneDepartured?.Invoke(this, e);
+            Stop();
         }
     }
 }

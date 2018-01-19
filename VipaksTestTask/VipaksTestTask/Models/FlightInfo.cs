@@ -1,7 +1,10 @@
 ﻿using System;
 
-namespace VipaksTestTask.Services
+namespace VipaksTestTask.Models
 {
+    /// <summary>
+    /// Информация о состоявшемся рейсе
+    /// </summary>
     public class FlightInfo : Flight
     {
         private int _passengerCount;
@@ -12,6 +15,9 @@ namespace VipaksTestTask.Services
         {
         }
 
+        /// <summary>
+        /// Количество пассажиров
+        /// </summary>
         public int PassengerCount
         {
             get { return _passengerCount; }

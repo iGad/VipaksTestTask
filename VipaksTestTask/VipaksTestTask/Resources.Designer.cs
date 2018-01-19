@@ -70,6 +70,15 @@ namespace VipaksTestTask {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Прибыло.
+        /// </summary>
+        public static string Arrived {
+            get {
+                return ResourceManager.GetString("Arrived", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to за последние 24 часа.
         /// </summary>
         public static string DayPassengersCount {
@@ -84,6 +93,15 @@ namespace VipaksTestTask {
         public static string DepartureCaption {
             get {
                 return ResourceManager.GetString("DepartureCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Убыло.
+        /// </summary>
+        public static string Departured {
+            get {
+                return ResourceManager.GetString("Departured", resourceCulture);
             }
         }
         

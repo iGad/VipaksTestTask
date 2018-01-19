@@ -1,6 +1,7 @@
 ﻿using System;
+using VipaksTestTask.Services;
 
-namespace VipaksTestTask.Services
+namespace VipaksTestTask.Interfaces
 {
     public interface ITimeManager
     {
