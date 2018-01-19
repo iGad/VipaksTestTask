@@ -3,10 +3,85 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:VipaksTestTask.ViewModels"
         xmlns:local="clr-namespace:VipaksTestTask"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+        Title="MainWindow" Height="500" Width="700">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type  viewModels:ScoreboardViewModel}">
+            <Border BorderBrush="Black" BorderThickness="1">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Content="{Binding Path=(viewModels:ScoreboardViewModel.Name)}"></Label>
+                    
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="{x:Static local:Resources.InLastFlight}"></Label>
+                        <TextBlock Grid.Column="1" Text="{Binding Path=(viewModels:ScoreboardViewModel.LastFlightPassengersCount), NotifyOnTargetUpdated=True}" ></TextBlock>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="{x:Static local:Resources.DayPassengersCount}"></Label>
+                        <TextBlock Grid.Column="1" Text="{Binding Path=(viewModels:ScoreboardViewModel.DayPassengersCount), NotifyOnTargetUpdated=True}"></TextBlock>
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="{x:Static local:Resources.TotalPassengersCount}"></Label>
+                        <TextBlock Grid.Column="1" Text="{Binding Path=(viewModels:ScoreboardViewModel.TotalPassengersCount), NotifyOnTargetUpdated=True}"></TextBlock>
+                    </Grid>
+                </Grid>
+            </Border>
+        </DataTemplate>
         
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="150" Height="150"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="24"></RowDefinition>
+                <RowDefinition Height="24"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Content="{x:Static local:Resources.Multiplyer}"></Label>
+                <ComboBox Grid.Column="1" ItemsSource="{Binding Path=(viewModels:MainViewModel.PossibleMultiplyers)}" SelectedValue="{Binding Mode=TwoWay, Path=(viewModels:MainViewModel.TimeMultiplyer)}">
+                </ComboBox>
+            </Grid>
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Label Content="{x:Static local:Resources.LastFlight}"></Label>
+                <TextBlock Text="{Binding Path=(viewModels:MainViewModel.LastFlightInfo), NotifyOnTargetUpdated=True}"></TextBlock>
+            </StackPanel>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <ContentPresenter Content="{Binding Path=(viewModels:MainViewModel.ArrivalScoreboard)}"></ContentPresenter>
+                <ContentPresenter Grid.Column="1" Content="{Binding Path=(viewModels:MainViewModel.DepartureScoreboard)}"></ContentPresenter>
+                
+            </Grid>
+
+        </Grid>
     </Grid>
 </Window>
