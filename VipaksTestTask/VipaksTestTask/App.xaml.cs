@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Threading;
 using Ninject;
 using VipaksTestTask.Interfaces;
@@ -12,18 +13,13 @@ namespace VipaksTestTask
     /// </summary>
     public partial class App : Application
     {
-        protected override void OnStartup(StartupEventArgs e)
+        private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
-            base.OnStartup(e);
-            DispatcherUnhandledException += OnDispatcherUnhandledException;
+            e.Handled = true;
+            MessageBox.Show(e.Exception.Message + Environment.NewLine + VipaksTestTask.Resources.AppWillBeClosed, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            Current.Shutdown();
         }
 
-        private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs dispatcherUnhandledExceptionEventArgs)
-        {
-            MessageBox.Show(dispatcherUnhandledExceptionEventArgs.Exception.Message, "Ошибка", MessageBoxButton.OK);
-            Shutdown();
-        }
-        
         private void OnStartup(object sender, StartupEventArgs e)
         {
             //Точка компоновки
@@ -40,5 +36,7 @@ namespace VipaksTestTask
             var mainWindow = new MainWindow{DataContext = kernel.Get<MainViewModel>()};
             mainWindow.Show();
         }
+
+        
     }
 }

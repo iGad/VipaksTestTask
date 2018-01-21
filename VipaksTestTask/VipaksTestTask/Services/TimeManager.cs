@@ -4,7 +4,7 @@ using VipaksTestTask.Interfaces;
 namespace VipaksTestTask.Services
 {
     /// <summary>
-    /// Сервис управления временем выполнения
+    /// Сервис управления временем. Вызывает событие Tick с текущем значением внутреннего времени (от 00:00:00 до 23:59:59)
     /// </summary>
     public class TimeManager : ITimeManager
     {

@@ -4,6 +4,9 @@ using VipaksTestTask.Services;
 
 namespace VipaksTestTask.ViewModels
 {
+    /// <summary>
+    /// Базовая вью-модель для сбора данных о пассажирах для табло
+    /// </summary>
     public abstract class ScoreboardViewModel : ViewModel
     {
         protected AirportEngine Engine { get; }
@@ -11,26 +14,30 @@ namespace VipaksTestTask.ViewModels
         private int _dayPassengersCount;
         private int _totalPassengersCount;
         private TimeSpan _lastFlightTime = TimeSpan.Zero;
-        private string _name;
+        private string _title;
 
         protected ScoreboardViewModel(AirportEngine engine)
         {
             Engine = engine;
         }
-
-        public string Name
+        /// <summary>
+        /// Заголовок табло
+        /// </summary>
+        public string Title
         {
-            get { return _name; }
+            get { return _title; }
             set
             {
-                if (_name != value)
+                if (_title != value)
                 {
-                    _name = value;
-                    RaisePropertyChanged(nameof(Name));
+                    _title = value;
+                    RaisePropertyChanged(nameof(Title));
                 }
             }
         }
-
+        /// <summary>
+        /// Кол-во пассажиров в последнем рейсе
+        /// </summary>
         public int LastFlightPassengersCount
         {
             get { return _lastFlightPassengersCount; }
@@ -43,7 +50,9 @@ namespace VipaksTestTask.ViewModels
                 }
             }
         }
-
+        /// <summary>
+        /// Кол-во пассажиров за сутки
+        /// </summary>
         public int DayPassengersCount
         {
             get { return _dayPassengersCount; }
@@ -55,7 +64,9 @@ namespace VipaksTestTask.ViewModels
                 }
             }
         }
-
+        /// <summary>
+        /// Кол-во пассажиров всего
+        /// </summary>
         public int TotalPassengersCount
         {
             get { return _totalPassengersCount; }
@@ -72,7 +83,7 @@ namespace VipaksTestTask.ViewModels
         {
             LastFlightPassengersCount = args.FlightInfo.PassengerCount;
             TotalPassengersCount += LastFlightPassengersCount;
-            if (_lastFlightTime > args.FlightInfo.Time)
+            if (IsNewDay(args))
             {
                 DayPassengersCount = LastFlightPassengersCount;
             }
@@ -81,6 +92,11 @@ namespace VipaksTestTask.ViewModels
                 DayPassengersCount += LastFlightPassengersCount;
             }
             _lastFlightTime = args.FlightInfo.Time;
+        }
+
+        private bool IsNewDay(FlightEventArgs args)
+        {
+            return _lastFlightTime > args.FlightInfo.Time;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿<Window x:Class="VipaksTestTask.MainWindow"
+﻿<local:WindowExt x:Class="VipaksTestTask.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,7 +7,7 @@
         xmlns:toolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
         xmlns:local="clr-namespace:VipaksTestTask"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="900">
+        Title="{x:Static local:Resources.OnlineScoreboard}" Height="500" Width="900">
     <Window.Resources>
         <DataTemplate DataType="{x:Type  viewModels:ScoreboardViewModel}">
             <Border BorderBrush="Black" BorderThickness="1">
@@ -18,7 +18,7 @@
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Label Content="{Binding Path=(viewModels:ScoreboardViewModel.Name)}"></Label>
+                    <Label Content="{Binding Path=(viewModels:ScoreboardViewModel.Title)}"></Label>
                     
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
@@ -47,11 +47,12 @@
                 </Grid>
             </Border>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModels:DiagramViewModel}">
-            <toolkit:Chart>
-                <toolkit:ColumnSeries Title="Прибыло"  ItemsSource="{Binding Path=(viewModels:DiagramViewModel.Columns)}" DependentValueBinding="{Binding Path=(viewModels:HourColumn.ArrivedCount)}" IndependentValueBinding="{Binding Path=(viewModels:HourColumn.From)}" />
-                <toolkit:ColumnSeries Title="Убыло"  ItemsSource="{Binding Path=(viewModels:DiagramViewModel.Columns)}" DependentValueBinding="{Binding Path=(viewModels:HourColumn.DeparturedCount)}" IndependentValueBinding="{Binding Path=(viewModels:HourColumn.From)}"/>
-            </toolkit:Chart>
+        
+        <DataTemplate DataType="{x:Type viewModels:LastFlightViewModel}">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="{x:Static local:Resources.LastFlight}"></Label>
+                <TextBlock Text="{Binding Path=(viewModels:LastFlightViewModel.LastFlightInfo), NotifyOnTargetUpdated=True}"></TextBlock>
+            </StackPanel>
         </DataTemplate>
     </Window.Resources>
     <Grid>
@@ -71,13 +72,9 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Label Content="{x:Static local:Resources.Multiplyer}"></Label>
-                <ComboBox Grid.Column="1" ItemsSource="{Binding Path=(viewModels:MainViewModel.PossibleMultiplyers)}" SelectedValue="{Binding Mode=TwoWay, Path=(viewModels:MainViewModel.TimeMultiplyer)}">
-                </ComboBox>
+                <ComboBox Grid.Column="1" ItemsSource="{Binding Path=(viewModels:MainViewModel.PossibleMultiplyers)}" SelectedValue="{Binding Mode=TwoWay, Path=(viewModels:MainViewModel.TimeMultiplyer)}"/>
             </Grid>
-            <StackPanel Grid.Row="1" Orientation="Horizontal">
-                <Label Content="{x:Static local:Resources.LastFlight}"></Label>
-                <TextBlock Text="{Binding Path=(viewModels:MainViewModel.LastFlightInfo), NotifyOnTargetUpdated=True}"></TextBlock>
-            </StackPanel>
+            <ContentPresenter Grid.Row="1" Content="{Binding Path=(viewModels:MainViewModel.LastFlightViewModel)}"></ContentPresenter>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
@@ -89,10 +86,10 @@
             </Grid>
 
         </Grid>
-       <!--<ContentPresenter Grid.Row="1" Content="{Binding Path=(viewModels:MainViewModel.DiagramViewModel)}"></ContentPresenter>-->
+       
         <toolkit:Chart Grid.Row="1" DataContext="{Binding Path=(viewModels:MainViewModel.DiagramViewModel)}">
-            <toolkit:ColumnSeries Title="Прибыло"  ItemsSource="{Binding Path=(viewModels:DiagramViewModel.Columns)}" DependentValueBinding="{Binding Path=(viewModels:HourColumn.ArrivedCount)}" IndependentValueBinding="{Binding Path=(viewModels:HourColumn.From)}" />
-            <toolkit:ColumnSeries Title="Убыло"  ItemsSource="{Binding Path=(viewModels:DiagramViewModel.Columns)}" DependentValueBinding="{Binding Path=(viewModels:HourColumn.DeparturedCount)}" IndependentValueBinding="{Binding Path=(viewModels:HourColumn.From)}"/>
+            <toolkit:ColumnSeries Title="{x:Static local:Resources.Arrived}"  ItemsSource="{Binding Path=(viewModels:DiagramViewModel.Columns)}" DependentValueBinding="{Binding Path=(viewModels:HourColumn.ArrivedCount)}" IndependentValueBinding="{Binding Path=(viewModels:HourColumn.From)}" />
+            <toolkit:ColumnSeries Title="{x:Static local:Resources.Departured}"  ItemsSource="{Binding Path=(viewModels:DiagramViewModel.Columns)}" DependentValueBinding="{Binding Path=(viewModels:HourColumn.DeparturedCount)}" IndependentValueBinding="{Binding Path=(viewModels:HourColumn.From)}"/>
         </toolkit:Chart>
     </Grid>
-</Window>
+</local:WindowExt>

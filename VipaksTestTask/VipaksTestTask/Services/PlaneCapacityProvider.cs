@@ -5,7 +5,7 @@ using VipaksTestTask.Models;
 namespace VipaksTestTask.Services
 {
     /// <summary>
-    /// Поставщик вместимости самолетов
+    /// Поставщик вместимости самолетов. Просто возвращает значение из словаря.
     /// </summary>
     public class PlaneCapacityProvider : IPlaneCapacityProvider
     {

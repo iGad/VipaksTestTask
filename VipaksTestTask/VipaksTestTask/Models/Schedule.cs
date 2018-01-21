@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace VipaksTestTask.Models
@@ -15,9 +16,12 @@ namespace VipaksTestTask.Models
 
         public void Validate()
         {
-            if(!Flights.Any())
-                throw new AppException("Расписание пустое");
-
+            if (!Flights.Any())
+                throw new AppException(Resources.SceduleIsEmpty);
+            if (Flights.Any(x => x.Time >= TimeSpan.FromDays(1)))
+                throw new AppException(Resources.ScheduleContainsInvalidTime);
+            if (Flights.Any(x => string.IsNullOrWhiteSpace(x.City)))
+                throw new AppException(Resources.ScheduleContainsInvalidCity);
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using VipaksTestTask.Interfaces;
-using VipaksTestTask.Services;
 
 namespace VipaksTestTask.UnitTests.Fakes
 {

@@ -61,6 +61,15 @@ namespace VipaksTestTask {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Приложение будет закрыто..
+        /// </summary>
+        public static string AppWillBeClosed {
+            get {
+                return ResourceManager.GetString("AppWillBeClosed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Количество пассажиров (Прилёт).
         /// </summary>
         public static string ArrivalCaption {
@@ -75,6 +84,15 @@ namespace VipaksTestTask {
         public static string Arrived {
             get {
                 return ResourceManager.GetString("Arrived", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не удалось загрузить расписание..
+        /// </summary>
+        public static string CanNotLoadSchedule {
+            get {
+                return ResourceManager.GetString("CanNotLoadSchedule", resourceCulture);
             }
         }
         
@@ -147,6 +165,42 @@ namespace VipaksTestTask {
         public static string Multiplyer {
             get {
                 return ResourceManager.GetString("Multiplyer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Онлайн-табло.
+        /// </summary>
+        public static string OnlineScoreboard {
+            get {
+                return ResourceManager.GetString("OnlineScoreboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Расписание пустое..
+        /// </summary>
+        public static string SceduleIsEmpty {
+            get {
+                return ResourceManager.GetString("SceduleIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to В расписании указан некорректный город..
+        /// </summary>
+        public static string ScheduleContainsInvalidCity {
+            get {
+                return ResourceManager.GetString("ScheduleContainsInvalidCity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to В расписании есть некорректное время рейса..
+        /// </summary>
+        public static string ScheduleContainsInvalidTime {
+            get {
+                return ResourceManager.GetString("ScheduleContainsInvalidTime", resourceCulture);
             }
         }
         

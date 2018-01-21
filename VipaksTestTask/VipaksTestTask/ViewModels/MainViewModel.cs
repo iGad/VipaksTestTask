@@ -1,41 +1,25 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using VipaksTestTask.Interfaces;
-using VipaksTestTask.Models;
 using VipaksTestTask.Services;
 
 namespace VipaksTestTask.ViewModels
 {
+    /// <summary>
+    /// Основная вью-модель приложения, содержит дочерние модели и управляет запуском онлайн-табло и скоростью имитации
+    /// </summary>
     public class MainViewModel : ViewModel
     {
         private readonly ITimeManager _timeManager;
         private readonly AirportEngine _engine;
-        private string _lastFlightInfo;
 
-        public MainViewModel(ITimeManager timeManager, AirportEngine engine, ArrivalScoreboardViewModel arrivalScoreboard, DepartureScoreboardViewModel departureScoreboard, DiagramViewModel diagramViewModel)
+        public MainViewModel(ITimeManager timeManager, AirportEngine engine, LastFlightViewModel lastFlightViewModel, ArrivalScoreboardViewModel arrivalScoreboard, DepartureScoreboardViewModel departureScoreboard, DiagramViewModel diagramViewModel)
         {
             _timeManager = timeManager;
             _engine = engine;
-            _engine.PlaneArrived += OnFlightHappend;
-            _engine.PlaneDepartured += OnFlightHappend;
+            LastFlightViewModel = lastFlightViewModel;
             ArrivalScoreboard = arrivalScoreboard;
             DepartureScoreboard = departureScoreboard;
             DiagramViewModel = diagramViewModel;
-            Columns = new Dictionary<string, int>
-            {
-                {"1", 10},
-                {"2", 10},
-                {"3", 10},
-                {"4", 10},
-                {"5", 10},
-                {"6", 10},
-                {"7", 10},
-                {"8", 10},
-                {"9", 10},
-                {"10", 10},
-                {"11", 10},
-                {"12", 10},
-            };
             PossibleMultiplyers = new ObservableCollection<int>
             {
                 1,
@@ -47,25 +31,7 @@ namespace VipaksTestTask.ViewModels
             _engine.Start();
         }
 
-        private void OnFlightHappend(object sender, FlightEventArgs flightEventArgs)
-        {
-            var pattern = flightEventArgs.FlightInfo.FlightType == FlightType.Arrival ? Resources.LastArrivedPattern : Resources.LastDeparturedPattern;
-            LastFlightInfo = string.Format(pattern, flightEventArgs.FlightInfo.City, flightEventArgs.FlightInfo.PlaneType.ToString(), flightEventArgs.FlightInfo.Time, flightEventArgs.FlightInfo.PassengerCount);
-        }
-
-        public string LastFlightInfo
-        {
-            get { return _lastFlightInfo; }
-            set
-            {
-                if (_lastFlightInfo != value)
-                {
-                    _lastFlightInfo = value;
-                    RaisePropertyChanged(nameof(LastFlightInfo));
-                }
-
-            }
-        }
+        
 
         public int TimeMultiplyer
         {
@@ -79,11 +45,31 @@ namespace VipaksTestTask.ViewModels
                 }
             }
         }
-
+        /// <summary>
+        /// Информация о последнем рейсе
+        /// </summary>
+        public LastFlightViewModel LastFlightViewModel { get; set; }
+        /// <summary>
+        /// Список возможных множителей времени выполнения
+        /// </summary>
         public ObservableCollection<int> PossibleMultiplyers { get; set; }
-        public Dictionary<string, int> Columns { get; set; }
+        /// <summary>
+        /// Вью-модель отвечающая за статистику прилетевших пассажиров
+        /// </summary>
         public ArrivalScoreboardViewModel ArrivalScoreboard { get; set; }
+        /// <summary>
+        /// Вью-модель отвечающая за статистику вылетевших пассажиров
+        /// </summary>
         public DepartureScoreboardViewModel DepartureScoreboard { get; set; }
+        /// <summary>
+        /// Вью-модель отвечающая за статистику пассажиров за сутки
+        /// </summary>
         public DiagramViewModel DiagramViewModel { get; set; }
+
+        protected override void DisposeInner()
+        {
+            base.DisposeInner();
+            _engine.Stop();
+        }
     }
 }

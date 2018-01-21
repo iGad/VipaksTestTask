@@ -103,8 +103,10 @@
     <Compile Include="ViewModels\DepartureScoreboardViewModel.cs" />
     <Compile Include="ViewModels\DiagramViewModel.cs" />
     <Compile Include="ViewModels\HourColumn.cs" />
+    <Compile Include="ViewModels\LastFlightViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ScoreboardViewModel.cs" />
+    <Compile Include="WindowExt.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -2,6 +2,9 @@
 
 namespace VipaksTestTask.ViewModels
 {
+    /// <summary>
+    /// Модель для хранения данных о количестве прибывших и улетевших пассажиров за час
+    /// </summary>
     public class HourColumn : ViewModel
     {
         private int _arrivedCount;

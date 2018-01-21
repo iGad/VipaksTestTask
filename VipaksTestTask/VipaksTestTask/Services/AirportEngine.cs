@@ -6,7 +6,7 @@ using VipaksTestTask.Models;
 namespace VipaksTestTask.Services
 {
     /// <summary>
-    /// Основной сервис работы аэропорта
+    /// Основной сервис работы аэропорта. При каждом изменении времени находит рейсы, которые выполнились и генерирует соответствующие события прилета или вылета
     /// </summary>
     public class AirportEngine : IDisposable
     {
@@ -68,9 +68,9 @@ namespace VipaksTestTask.Services
             {
                 return _scheduleProvider.GetSchedule();
             }
-            catch (Exception)
+            catch 
             {
-                throw new AppException("Не удалось загрузить расписание");
+                throw new AppException(Resources.CanNotLoadSchedule);
             }
         }
 

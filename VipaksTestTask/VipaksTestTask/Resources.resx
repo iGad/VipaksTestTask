@@ -117,11 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AppWillBeClosed" xml:space="preserve">
+    <value>Приложение будет закрыто.</value>
+  </data>
   <data name="ArrivalCaption" xml:space="preserve">
     <value>Количество пассажиров (Прилёт)</value>
   </data>
   <data name="Arrived" xml:space="preserve">
     <value>Прибыло</value>
+  </data>
+  <data name="CanNotLoadSchedule" xml:space="preserve">
+    <value>Не удалось загрузить расписание.</value>
   </data>
   <data name="DayPassengersCount" xml:space="preserve">
     <value>за последние 24 часа</value>
@@ -146,6 +152,18 @@
   </data>
   <data name="Multiplyer" xml:space="preserve">
     <value>Множитель</value>
+  </data>
+  <data name="OnlineScoreboard" xml:space="preserve">
+    <value>Онлайн-табло</value>
+  </data>
+  <data name="SceduleIsEmpty" xml:space="preserve">
+    <value>Расписание пустое.</value>
+  </data>
+  <data name="ScheduleContainsInvalidCity" xml:space="preserve">
+    <value>В расписании указан некорректный город.</value>
+  </data>
+  <data name="ScheduleContainsInvalidTime" xml:space="preserve">
+    <value>В расписании есть некорректное время рейса.</value>
   </data>
   <data name="TotalPassengersCount" xml:space="preserve">
     <value>всего</value>

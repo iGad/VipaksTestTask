@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using VipaksTestTask.Interfaces;
 using VipaksTestTask.Models;
-using VipaksTestTask.Services;
 
 namespace VipaksTestTask.UnitTests.Fakes
 {

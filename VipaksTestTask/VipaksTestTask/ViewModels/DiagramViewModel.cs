@@ -6,6 +6,9 @@ using VipaksTestTask.Services;
 
 namespace VipaksTestTask.ViewModels
 {
+    /// <summary>
+    /// Модель для получения и отображения данных о пассажирах за сутки
+    /// </summary>
     public class DiagramViewModel : ViewModel
     {
         private readonly AirportEngine _engine;
@@ -17,9 +20,12 @@ namespace VipaksTestTask.ViewModels
             _engine.PlaneArrived += OnPlaneArrived;
             _engine.PlaneDepartured += OnPlaneDepartured;
             InitColumns();
+            Name = "Test";
         }
 
         public ObservableCollection<HourColumn> Columns { get; } = new ObservableCollection<HourColumn>();
+
+        public string Name { get; set; }
 
         private void InitColumns()
         {
