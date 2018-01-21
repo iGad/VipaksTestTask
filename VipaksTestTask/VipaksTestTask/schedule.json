@@ -1,0 +1,106 @@
+﻿{
+  "Flights": [
+    {
+      "PlaneType": 0,
+      "FlightType": 0,
+      "Time": "00:00:00",
+      "City": "test0"
+    },
+    {
+      "PlaneType": 0,
+      "FlightType": 1,
+      "Time": "00:25:00",
+      "City": "test0"
+    },
+    {
+      "PlaneType": 1,
+      "FlightType": 1,
+      "Time": "01:01:00",
+      "City": "test1"
+    },
+    {
+      "PlaneType": 1,
+      "FlightType": 0,
+      "Time": "01:21:00",
+      "City": "test1"
+    },
+    {
+      "PlaneType": 1,
+      "FlightType": 1,
+      "Time": "01:30:00",
+      "City": "test1"
+    },
+    {
+      "PlaneType": 2,
+      "FlightType": 0,
+      "Time": "02:00:00",
+      "City": "test2"
+    },
+    {
+      "PlaneType": 3,
+      "FlightType": 1,
+      "Time": "03:30:00",
+      "City": "test3"
+    },
+    {
+      "PlaneType": 0,
+      "FlightType": 0,
+      "Time": "04:00:00",
+      "City": "test4"
+    },
+    {
+      "PlaneType": 1,
+      "FlightType": 1,
+      "Time": "05:30:00",
+      "City": "test5"
+    },
+    {
+      "PlaneType": 2,
+      "FlightType": 0,
+      "Time": "06:00:00",
+      "City": "test6"
+    },
+    {
+      "PlaneType": 3,
+      "FlightType": 1,
+      "Time": "07:30:00",
+      "City": "test7"
+    },
+    {
+      "PlaneType": 0,
+      "FlightType": 0,
+      "Time": "23:59:59",
+      "City": "test8"
+    },
+    {
+      "PlaneType": 1,
+      "FlightType": 1,
+      "Time": "09:30:00",
+      "City": "test9"
+    },
+    {
+      "PlaneType": 2,
+      "FlightType": 0,
+      "Time": "15:28:00",
+      "City": "test8"
+    },
+    {
+      "PlaneType": 3,
+      "FlightType": 1,
+      "Time": "17:30:00",
+      "City": "test7"
+    },
+    {
+      "PlaneType": 0,
+      "FlightType": 0,
+      "Time": "18:00:00",
+      "City": "test8"
+    },
+    {
+      "PlaneType": 1,
+      "FlightType": 1,
+      "Time": "18:30:00",
+      "City": "city10"
+    }
+  ]
+}
